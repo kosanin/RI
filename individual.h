@@ -31,7 +31,8 @@ public:
     // izracunavanje fitnes funkcije
     void evaluate_fitness(
             const std::vector<std::vector<double>>& C,
-            const std::vector<std::vector<double>>& W);
+            const std::vector<std::vector<double>>& W,
+            const float alpha);
 
     // ispisivanje jedinke na ekran
     friend std::ostream& operator<< (std::ostream& os, const individual& i);

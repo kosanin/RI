@@ -9,7 +9,8 @@
 #include <thread>
 
 // inicijalna populacija sacinjena od m_population_size jediniki
-GA::GA(int p, int n)
+GA::GA(int p, int n, float alpha)
+    : alpha(alpha)
 {
     // ucitavamo CAB skup podataka
     read_CAB();
@@ -17,8 +18,9 @@ GA::GA(int p, int n)
     // definisemo inicijalnu populaciju
     for (int i = 0; i < m_population_size; ++i) {
        m_population.push_back(individual(p, n, C));
-       m_population[i].evaluate_fitness(C, W);
+       m_population[i].evaluate_fitness(C, W, alpha);
     }
+
 
     // cuvamo trenutno najbolje resenje
     best_solution = m_population[0];
@@ -188,8 +190,8 @@ auto GA::create_generation(const std::vector<individual>& selected) -> std::vect
         // racunanje fitnesa jedinki
 //        std::thread t1(&individual::evaluate_fitness, &children.first, std::ref(C), std::ref(W));
 //        std::thread t2(&individual::evaluate_fitness, &children.second, std::ref(C), std::ref(W));
-        children.first.evaluate_fitness(C, W);
-        children.second.evaluate_fitness(C, W);
+        children.first.evaluate_fitness(C, W, alpha);
+        children.second.evaluate_fitness(C, W, alpha);
 //        t1.join();
 //        t2.join();
 

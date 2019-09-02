@@ -11,6 +11,8 @@
 
 class GA {
 private:
+    float alpha;
+
     // parametri genetskog algoritma
     const int m_population_size = 150;
     const int m_max_iters = 500;
@@ -24,7 +26,7 @@ public:
     individual best_solution;
 
     // konstruktor
-    GA(int p, int n);
+    GA(int p, int n, float alpha);
 
     // operator selekcije
     auto selection() -> std::vector<individual>;

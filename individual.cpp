@@ -120,7 +120,8 @@ std::ostream& operator<< (std::ostream& os, const individual& i)
 
 void individual::evaluate_fitness(
         const std::vector<std::vector<double>>& C,
-        const std::vector<std::vector<double>>& W)
+        const std::vector<std::vector<double>>& W,
+        const float alpha)
 {
     m_fitness = 0.0;
     int n = m_genetic_code.size();
@@ -134,9 +135,8 @@ void individual::evaluate_fitness(
             if (m_genetic_code[i].first || m_genetic_code[j].first)
                 continue;
 
-            // TODO parametrizovati alpha
-            //m_fitness += W[i][j] * (C[i][i_hub] + 0.2 * C[i_hub][j_hub] + C[j][j_hub]);
-            m_fitness += C[i][i_hub] + 0.2 * C[i_hub][j_hub] + C[j][j_hub];
+            //m_fitness += W[i][j] * (C[i][i_hub] + alpha * C[i_hub][j_hub] + C[j][j_hub]);
+            m_fitness += C[i][i_hub] + alpha * C[i_hub][j_hub] + C[j][j_hub];
         }
     }
 }
