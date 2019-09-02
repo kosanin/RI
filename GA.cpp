@@ -170,7 +170,7 @@ auto GA::create_generation(const std::vector<individual>& selected) -> std::vect
             [] (const individual& a, const individual& b) { return a.fitness() < b.fitness();});
 
     // elitizam
-    // prepisujemo 50 najboljih jedinki
+    // prepisujemo 100 najboljih jedinki
     std::vector<individual> new_gen(m_population.begin(), m_population.begin() + 100);
     //std::vector<individual> new_gen;
     int new_gen_size = 0;
@@ -212,7 +212,7 @@ auto GA::fit() -> individual
     int num_same = 0;
     for (int i = 0; i < m_max_iters; ++i) {
 
-        // ukoliko se u 100 iteracija nije promenlio resenje
+        // ukoliko se u 200 iteracija nije promenlio resenje
         // stop
         if (num_same >= 200) {
             break;
